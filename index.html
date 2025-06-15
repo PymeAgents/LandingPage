@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pyme Agents - IA Conversacional para tu Pyme</title>
+    <meta name="description" content="IA conversacional que vende por tu pyme 24/7. Conecta WhatsApp, Instagram, Facebook. Solo $19/mes. Prueba gratis ahora.">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <style>
+        :root {
+            /* Colors */
+            --bg-primary: #081a2f;
+            --accent-primary: #18d0b5;
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.8);
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --gradient-primary: linear-gradient(135deg, var(--accent-primary), #32d583);
+            --gradient-hero: linear-gradient(135deg, rgba(24, 208, 181, 0.1), rgba(50, 213, 131, 0.1));
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            --font-size-xs: 0.75rem;
+            --font-size-sm: 0.875rem;
+            --font-size-base: 1rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
+            
+            /* Spacing */
+            --spacing-1: 0.25rem;
+            --spacing-2: 0.5rem;
+            --spacing-3: 0.75rem;
+            --spacing-4: 1rem;
+            --spacing-5: 1.25rem;
+            --spacing-6: 1.5rem;
+            --spacing-8: 2rem;
+            --spacing-10: 2.5rem;
+            --spacing-12: 3rem;
+            --spacing-16: 4rem;
+            --spacing-20: 5rem;
+            --spacing-24: 6rem;
+            
+            /* Border radius */
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-xl: 1rem;
+            --radius-2xl: 1.5rem;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --shadow-glow: 0 0 20px rgba(24, 208, 181, 0.3);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Background Pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(24, 208, 181, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(50, 213, 131, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(24, 208, 181, 0.05) 0%, transparent 50%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Glass morphism utility */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-6);
+        }
+        
+        /* Typography */
+        .text-xs { font-size: var(--font-size-xs); }
+        .text-sm { font-size: var(--font-size-sm); }
+        .text-base { font-size: var(--font-size-base); }
+        .text-lg { font-size: var(--font-size-lg); }
+        .text-xl { font-size: var(--font-size-xl); }
+        .text-2xl { font-size: var(--font-size-2xl); }
+        .text-3xl { font-size: var(--font-size-3xl); }
+        .text-4xl { font-size: var(--font-size-4xl); }
+        .text-5xl { font-size: var(--font-size-5xl); }
+        .text-6xl { font-size: var(--font-size-6xl); }
+        
+        .font-normal { font-weight: 400; }
+        .font-semibold { font-weight: 600; }
+        .font-bold { font-weight: 800; }
+        .font-black { font-weight: 900; }
+        
+        .text-center { text-align: center; }
+        .text-muted { color: var(--text-muted); }
+        .text-secondary { color: var(--text-secondary); }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+            padding: var(--spacing-4) var(--spacing-8);
+            border: none;
+            border-radius: var(--radius-lg);
+            font-family: inherit;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: white;
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow), var(--shadow-xl);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--glass-border);
+        }
+        
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        
+        .btn-lg {
+            padding: var(--spacing-5) var(--spacing-10);
+            font-size: var(--font-size-lg);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero-title {
+            font-size: clamp(var(--font-size-4xl), 5vw, var(--font-size-6xl));
+            font-weight: 900;
+            margin-bottom: var(--spacing-6);
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.1;
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-xl);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: var(--spacing-4);
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: var(--spacing-12);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-8);
+            flex-wrap: wrap;
+        }
+        
+        .hero-stat {
+            text-align: center;
+        }
+        
+        .hero-stat-number {
+            font-size: var(--font-size-2xl);
+            font-weight: 800;
+            color: var(--accent-primary);
+            display: block;
+        }
+        
+        .hero-stat-label {
+            font-size: var(--font-size-sm);
+            color: var(--text-muted);
+        }
+        
+        /* Section styles */
+        .section {
+            padding: var(--spacing-24) 0;
+        }
+        
+        .section-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .section-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-16);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* About section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-16);
+            align-items: center;
+        }
+        
+        .about-content h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .about-content p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .about-video {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .about-video iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Features section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-8);
+        }
+        
+        .feature-card {
+            padding: var(--spacing-8);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto var(--spacing-6);
+            border-radius: var(--radius-xl);
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .feature-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .feature-description {
+            color: var(--text-secondary);
+        }
+        
+        /* How it works section */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-12);
+        }
+        
+        .step {
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--font-size-xl);
+            font-weight: 800;
+            margin: 0 auto var(--spacing-6);
+        }
+        
+        .step-title {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .step-description {
+            color: var(--text-secondary);
+        }
+        
+        /* Pricing section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-8);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            padding: var(--spacing-10);
+            border-radius: var(--radius-2xl);
+            text-align: center;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pricing-card.featured {
+            background: var(--gradient-hero);
+            border: 2px solid var(--accent-primary);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-primary);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-6);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-sm);
+            font-weight: 600;
+        }
+        
+        .pricing-title {
+            font-size: var(--font-size-2xl);
+            font-weight: 800;
+            margin-bottom: var(--spacing-4);
+        }
+        
+        .pricing-price {
+            font-size: var(--font-size-4xl);
+            font-weight: 900;
+            color: var(--accent-primary);
+            margin-bottom: var(--spacing-2);
+        }
+        
+        .pricing-period {
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .pricing-features li {
+            padding: var(--spacing-2) 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-primary);
+            padding: var(--spacing-24) 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-title {
+            font-size: var(--font-size-4xl);
+            font-weight: 900;
+            color: white;
+            margin-bottom: var(--spacing-6);
+        }
+        
+        .cta-subtitle {
+            font-size: var(--font-size-xl);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .btn-cta {
+            background: white;
+            color: var(--bg-primary);
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            padding: var(--spacing-5) var(--spacing-12);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            padding: var(--spacing-16) 0 var(--spacing-8);
+            border-top: 1px solid var(--glass-border);
+        }
+        
+        .footer-content {
+            text-align: center;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-6);
+            margin-bottom: var(--spacing-8);
+        }
+        
+        .footer-social a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            background: var(--accent-primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .footer-text {
+            color: var(--text-muted);
+            font-size: var(--font-size-sm);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-4);
+            }
+            
+            .section {
+                padding: var(--spacing-16) 0;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-8);
+            }
+            
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero-stats {
+                gap: var(--spacing-4);
+            }
+            
+            .section-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-8);
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-title {
+                font-size: var(--font-size-3xl);
+            }
+        }
+        
+        /* Animations */
+        .float {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(24, 208, 181, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(24, 208, 181, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(24, 208, 181, 0); }
+        }
+        
+        /* Loading states */
+        .skeleton {
+            background: linear-gradient(90deg, var(--glass-bg) 25%, rgba(255,255,255,0.2) 50%, var(--glass-bg) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <video 
+            class="hero-video" 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            loading="lazy"
+            aria-label="Video de fondo mostrando ambiente de trabajo nocturno"
+        >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-businesswoman-working-on-her-laptop-at-night-43573-large.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento video.
+        </video>
+        
+        <div class="container">
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1 class="hero-title">
+                    IA conversacional que vende por tu pyme
+                </h1>
+                <p class="hero-subtitle">
+                    Conecta WhatsApp, Instagram y Facebook. Atiende, agenda y cobra 24/7 sin intervención humana. Desde US $19/mes.
+                </p>
+                
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="200">
+                    <a href="#" class="btn btn-primary btn-lg pulse" aria-label="Iniciar prueba gratuita">
+                        <i data-feather="play-circle"></i>
+                        Probar gratis
+                    </a>
+                    <a href="#como-funciona" class="btn btn-secondary btn-lg" aria-label="Ver cómo funciona">
+                        <i data-feather="arrow-down"></i>
+                        Ver demo
+                    </a>
+                </div>
+                
+                <div class="hero-stats" data-aos="fade-up" data-aos-delay="400">
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">5min</span>
+                        <span class="hero-stat-label">Setup completo</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">24/7</span>
+                        <span class="hero-stat-label">Atención automatizada</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-number">AWS</span>
+                        <span class="hero-stat-label">Infraestructura serverless</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content" data-aos="fade-right">
+                    <h3>¿Qué es Pyme Agents?</h3>
+                    <p>
+                        Una plataforma de IA conversacional diseñada específicamente para pequeñas y medianas empresas latinoamericanas. 
+                        Automatiza la atención al cliente, gestiona ventas y genera reportes en tiempo real.
+                    </p>
+                    <p>
+                        Sin necesidad de conocimientos técnicos ni infraestructura compleja. 
+                        Todo funciona en la nube de AWS con la máxima confiabilidad.
+                    </p>
+                    <a href="#" class="btn btn-primary" aria-label="Conocer más sobre Pyme Agents">
+                        <i data-feather="arrow-right"></i>
+                        Conocer más
+                    </a>
+                </div>
+                
+                <div class="about-video" data-aos="fade-left">
+                    <iframe 
+                        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                        title="Demo de Pyme Agents - IA Conversacional"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Funciones clave</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Todo lo que necesitas para automatizar tu atención al cliente y aumentar tus ventas
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card glass" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-icon">
+                        <i data-feather="clock" color="white" size="32"></i>
+                    </div>
+                    <h4 class="feature-title">Atención 24/7</h4>
+                    <p class="feature-description">
+                        Tu agente de IA nunca duerme. Atiende consultas, procesa pedidos y agenda citas las 24 horas del día, 
+                        incluso cuando tu equipo está descansando.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-icon">
+                        <i data-feather="server" color="white" size="32"></i>
+                    </div>
+                    <h4 class="feature-title">Serverless AWS</h4>
+                    <p class="feature-description">
+                        Infraestructura completamente gestionada en Amazon Web Services. 
+                        Sin servidores que mantener, sin DevOps, sin dolores de cabeza técnicos.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass" data-aos="fade-up" data-aos-delay="400">
+                    <div class="feature-icon">
+                        <i data-feather="bar-chart-2" color="white" size="32"></i>
+                    </div>
+                    <h4 class="feature-title">Reportes en vivo</h4>
+                    <p class="feature-description">
+                        Dashboard en tiempo real con métricas de conversación, ventas, y satisfacción del cliente. 
+                        Toma decisiones basadas en datos reales.
+                    </p>
+                </div>
+                
+                <div class="feature-card glass" data-aos="fade-up" data-aos-delay="500">
+                    <div class="feature-icon">
+                        <i data-feather="zap" color="white" size="32"></i>
+                    </div>
+                    <h4 class="feature-title">Entrenamiento fácil</h4>
+                    <p class="feature-description">
+                        Sube tu catálogo, define tus procesos y listo. La IA aprende automáticamente 
+                        sobre tu negocio sin programación compleja.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works Section -->
+    <section class="section" id="como-funciona">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Cómo funciona</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Tres pasos simples para tener tu agente de IA funcionando
+            </p>
+            
+            <div class="steps">
+                <div class="step" data-aos="fade-up" data-aos-delay="200">
+                    <div class="step-number">1</div>
+                    <h4 class="step-title">Registro</h4>
+                    <p class="step-description">
+                        Crea tu cuenta en menos de 2 minutos. Solo necesitas tu email y los datos básicos de tu negocio.
+                    </p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">2</div>
+                    <h4 class="step-title">Carga tu catálogo</h4>
+                    <p class="step-description">
+                        Sube tus productos, servicios y procesos. La IA se entrena automáticamente con tu información.
+                    </p>
+                </div>
+                
+                <div class="step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">3</div>
+                    <h4 class="step-title">Lanza tu agente</h4>
+                    <p class="step-description">
+                        Conecta WhatsApp, Instagram y Facebook. Tu agente de IA estará listo para atender clientes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Planes</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                Elige el plan perfecto para tu pyme. Sin permanencia, cancela cuando quieras.
+            </p>
+            
+            <div class="pricing-grid">
+                <div class="pricing-card glass" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="pricing-title">Starter</h3>
+                    <div class="pricing-price">$19</div>
+                    <div class="pricing-period">USD por mes</div>
+                    
+                    <ul class="pricing-features">
+                        <li>1 agente de IA</li>
+                        <li>WhatsApp + 1 canal social</li>
+                        <li>500 conversaciones/mes</li>
+                        <li>Reportes básicos</li>
+                        <li>Soporte por email</li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-secondary" aria-label="Comenzar con plan Starter">
+                        Comenzar
+                    </a>
+                </div>
+                
+                <div class="pricing-card glass featured" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-badge">Más popular</div>
+                    <h3 class="pricing-title">Pro</h3>
+                    <div class="pricing-price">$49</div>
+                    <div class="pricing-period">USD por mes</div>
+                    
+                    <ul class="pricing-features">
+                        <li>3 agentes de IA</li>
+                        <li>Todos los canales sociales</li>
+                        <li>2,000 conversaciones/mes</li>
+                        <li>Reportes avanzados + Analytics</li>
+                        <li>Soporte prioritario</li>
+                        <li>Integración con CRM</li>
+                        <li>API personalizada</li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary" aria-label="Comenzar con plan Pro">
+                        Comenzar gratis
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content" data-aos="zoom-in">
+                <h2 class="cta-title">¿Listo para automatizar tu pyme?</h2>
+                <p class="cta-subtitle">
+                    Únete a cientos de empresarios que ya están vendiendo más con IA conversacional
+                </p>
+                <a href="#" class="btn btn-cta float" aria-label="Crear cuenta gratuita">
+                    <i data-feather="user-plus"></i>
+                    Crear mi cuenta
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-social" data-aos="fade-up">
+                    <a href="#" aria-label="Instagram de Pyme Agents">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" aria-label="Twitter de Pyme Agents">
+                        <i data-feather="twitter"></i>
+                    </a>
+                    <a href="#" aria-label="LinkedIn de Pyme Agents">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                </div>
+                <p class="footer-text">
+                    © 2025 Pyme Agents. Hecho con ❤️ en Chile.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading states for buttons
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') {
+                    e.preventDefault();
+                    
+                    // Add loading state
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i data-feather="loader"></i> Cargando...';
+                    this.disabled = true;
+                    feather.replace();
+                    
+                    // Simulate loading
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        feather.replace();
+                        
+                        // Show success message (in a real app, this would redirect)
+                        const notification = document.createElement('div');
+                        notification.innerHTML = `
+                            <div style="
+                                position: fixed;
+                                top: 20px;
+                                right: 20px;
+                                background: var(--gradient-primary);
+                                color: white;
+                                padding: 16px 24px;
+                                border-radius: 12px;
+                                box-shadow: var(--shadow-xl);
+                                z-index: 1000;
+                                animation: slideIn 0.3s ease;
+                            ">
+                                <i data-feather="check-circle" style="display: inline; margin-right: 8px;"></i>
+                                ¡Genial! Te contactaremos pronto.
+                            </div>
+                        `;
+                        document.body.appendChild(notification);
+                        feather.replace();
+                        
+                        setTimeout(() => {
+                            notification.remove();
+                        }, 3000);
+                    }, 2000);
+                }
+            });
+        });
+
+        // Add parallax effect to hero video
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroVideo = document.querySelector('.hero-video');
+            
+            if (heroVideo) {
+                heroVideo.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Add intersection observer for performance
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add dynamic styles for animations
+        const dynamicStyles = document.createElement('style');
+        dynamicStyles.textContent = `
+            @keyframes slideIn {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+            
+            .section:not(.in-view) {
+                opacity: 0.8;
+            }
+            
+            .section.in-view {
+                opacity: 1;
+                transition: opacity 0.6s ease;
+            }
+            
+            /* Micro-interactions */
+            .btn {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .btn:active {
+                transform: scale(0.98);
+            }
+            
+            .feature-card:hover .feature-icon {
+                transform: scale(1.1) rotate(5deg);
+                transition: transform 0.3s ease;
+            }
+            
+            .step:hover .step-number {
+                transform: scale(1.1);
+                box-shadow: var(--shadow-glow);
+                transition: all 0.3s ease;
+            }
+            
+            .pricing-card:hover {
+                box-shadow: var(--shadow-glow);
+            }
+            
+            /* Responsive video */
+            @media (max-width: 768px) {
+                .hero-video {
+                    object-position: center center;
+                }
+            }
+        `;
+        document.head.appendChild(dynamicStyles);
+
+        // Performance optimization: Lazy load video
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            // Only start video when hero is in view
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        heroVideo.play();
+                    } else {
+                        heroVideo.pause();
+                    }
+                });
+            });
+            
+            videoObserver.observe(heroVideo);
+        }
+
+        // Add mouse movement effect to hero
+        document.addEventListener('mousemove', (e) => {
+            const hero = document.querySelector('.hero');
+            const rect = hero.getBoundingClientRect();
+            
+            if (e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const deltaX = (e.clientX - centerX) / rect.width;
+                const deltaY = (e.clientY - centerY) / rect.height;
+                
+                const heroContent = document.querySelector('.hero-content');
+                heroContent.style.transform = `translate(${deltaX * 10}px, ${deltaY * 10}px)`;
+            }
+        });
+
+        // Cleanup and error handling
+        window.addEventListener('error', (e) => {
+            console.warn('Non-critical error handled:', e.message);
+        });
+
+        // Service worker registration for PWA capabilities (optional)
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // In a real app, you would register a service worker here
+                console.log('PWA capabilities available');
+            });
+        }
+    </script>
+</body>
+</html>
